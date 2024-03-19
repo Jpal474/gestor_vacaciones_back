@@ -27,7 +27,6 @@ import { AuthGuard } from '@nestjs/passport';
 export class DepartamentoController {
   constructor(private departamentosService: DepartamentoService) {}
 
-  @Get()
   @ApiOperation({ summary: 'Obtener todos los departamentos sin paginacion' })
   @ApiResponse({
     status: 200,
@@ -35,31 +34,31 @@ export class DepartamentoController {
     isArray: true,
     type: Departamento,
   })
+  @Get()
   getAllDepartamentos(): Promise<Departamento[]> {
     return this.departamentosService.getAllDepartamentos();
   }
-
-  @Get('/:id')
+  
   @ApiOperation({ summary: 'Obtener Departamento a partir de su ID' })
-  @ApiParam({ name: 'ID', description: 'ID del Departamento a buscar' })
+  @ApiParam({ name: 'id', description: 'ID del Departamento a buscar' })
   @ApiResponse({
     status: 200,
     description: 'Regresa un objeto con los datos del Departamento encontrado',
     isArray: false,
     type: Departamento,
   })
+  @Get('/:id')
   getDepartamentoById(@Param('id') id: number): Promise<Departamento> {
     return this.departamentosService.getDepartamentoById(id);
   }
 
-  @Get('/:size/:number')
   @ApiOperation({ summary: 'Obtener todos los departamentos' })
   @ApiParam({
-    name: 'Size',
+    name: 'size',
     description: 'Numero de elementos a mostrar en el front',
   })
   @ApiParam({
-    name: 'Number',
+    name: 'number',
     description: 'Numero de página a obtener para mostrar en front',
   })
   @ApiResponse({
@@ -68,6 +67,7 @@ export class DepartamentoController {
     isArray: true,
     type: Departamento,
   })
+  @Get('/:size/:number')
   getDepartamentos(
     @Param('size') size: number,
     @Param('number') number: number,
@@ -75,7 +75,6 @@ export class DepartamentoController {
     return this.departamentosService.getDepartamentos(size, number);
   }
 
-  @Post()
   @ApiOperation({ summary: 'Crear Departamento' })
   @ApiBody({
     description: 'Datos del Departamento',
@@ -87,19 +86,20 @@ export class DepartamentoController {
     isArray: false,
     type: Departamento,
   })
+  @Post()
   createDepartamento(@Body() createDepartamentoDto): Promise<Departamento> {
     return this.departamentosService.createDepartamento(createDepartamentoDto);
   }
 
-  @Delete('/:id')
   @ApiOperation({ summary: 'Elimina un Departamento por su ID' })
-  @ApiParam({ name: 'ID', description: 'ID del Departamento' })
+  @ApiParam({ name: 'id', description: 'ID del Departamento' })
   @ApiResponse({
     status: 200,
     description: 'Regresa true si el departamento ha sido eliminado',
     isArray: false,
     type: Boolean,
   })
+  @Delete('/:id')
   deleteDepartamentoById(@Param('id') id: number): Promise<boolean> {
     return this.departamentosService.deleteDepartamento(id);
   }

@@ -90,7 +90,7 @@ export class SolicitudController {
     summary: 'Obtiene todas las solicitudes Aprobadas de Un Usuario Especifico',
   })
   @ApiParam({
-    name: 'ID',
+    name: 'id',
     description: 'ID del Usuario a buscar sus solicitudes ',
   })
   @ApiResponse({
@@ -108,15 +108,15 @@ export class SolicitudController {
   @Get('/:size/:number/:op')
   @ApiOperation({ summary: 'Listar Solicitudes' })
   @ApiParam({
-    name: 'Size',
+    name: 'size',
     description: 'Tamaño de registros a mostrar en front',
   })
   @ApiParam({
-    name: 'Number',
+    name: 'number',
     description: 'Número de página a mostrar en front',
   })
   @ApiParam({
-    name: 'Op',
+    name: 'op',
     description: 'Opción para forma de orndenar los datos',
   })
   getSolicitudes(
@@ -133,15 +133,15 @@ export class SolicitudController {
   })
   @ApiParam({ name: 'id', description: 'ID del Empleado' })
   @ApiParam({
-    name: 'Size',
+    name: 'size',
     description: 'Tamaño de registros a mostrar en front',
   })
   @ApiParam({
-    name: 'Number',
+    name: 'number',
     description: 'Número de página a mostrar en front',
   })
   @ApiParam({
-    name: 'Op',
+    name: 'op',
     description: 'Opción para forma de orndenar los datos',
   })
   @ApiResponse({
@@ -163,15 +163,15 @@ export class SolicitudController {
   @Get('trabajadores/:size/:number/:op')
   @ApiOperation({ summary: 'Listar Solicitudes' })
   @ApiParam({
-    name: 'Size',
+    name: 'size',
     description: 'Tamaño de registros a mostrar en front',
   })
   @ApiParam({
-    name: 'Number',
+    name: 'number',
     description: 'Número de página a mostrar en front',
   })
   @ApiParam({
-    name: 'Op',
+    name: 'op',
     description: 'Opción para forma de orndenar los datos',
   })
   getSolicitudesTrabajadores(
@@ -182,27 +182,25 @@ export class SolicitudController {
     return this.solicitudService.getSolicitudesTrabajadores(size, number, op);
   }
 
-  @Post()
   @ApiOperation({ summary: 'Crear Solicitud' })
   @ApiBody({
     description: 'Datos de la Solicitud',
     type: CreateSolicitudDto,
   })
+  @Post()
   createSolicitud(
     @Body() createSolicitudDto: CreateSolicitudDto,
   ): Promise<Solicitud> {
     return this.solicitudService.createSolicitud(createSolicitudDto);
   }
 
-  @Put('/aprobar/:id')
   @ApiOperation({ summary: 'Aprobar Solicitud' })
-  @ApiParam({ name: 'ID', description: 'ID de la Solicitud aprobada' })
   @ApiBody({
     description: 'Nombre de usuario de la persona quién aprobó la solicitud',
     type: String,
   })
   @ApiParam({
-    name: 'ID',
+    name: 'id',
     description: 'ID de la Solicitud a Aprobar',
   })
   @ApiResponse({
@@ -211,6 +209,7 @@ export class SolicitudController {
     isArray: false,
     type: Boolean,
   })
+  @Put('/aprobar/:id')
   aprobarSolicitud(
     @Param('id') id: number,
     @Body() aprobarSolicitudDto: AprobarSolicitudDto,
@@ -218,24 +217,24 @@ export class SolicitudController {
     return this.solicitudService.aceptarSolicitud(id, aprobarSolicitudDto);
   }
 
-  @Put('/denegar/:id')
   @ApiOperation({ summary: 'Denegar Solicitud' })
-  @ApiParam({ name: 'ID', description: 'ID de la solicitud a rechazar' })
+  @ApiParam({ name: 'id', description: 'ID de la solicitud a rechazar' })
   @ApiBody({
     description: 'Nombre de usuario de la persona quién rechazó la solicitud',
     type: String,
   })
   @ApiParam({
-    name: 'ID',
+    name: 'id',
     description: 'ID de la Solicitud a Rechazar',
   })
   @ApiResponse({
     status: 200,
     description:
-      'Regresa True Si la Solicitud Ha Sido Rechazada de Forma Éxitosa',
+    'Regresa True Si la Solicitud Ha Sido Rechazada de Forma Éxitosa',
     isArray: false,
     type: Boolean,
   })
+  @Put('/denegar/:id')
   denegarSolicitud(
     @Param('id') id: number,
     @Body() denegarSolicitudDto: DenegarSolicitudDto,
@@ -243,16 +242,16 @@ export class SolicitudController {
     return this.solicitudService.denegarSolicitud(id, denegarSolicitudDto);
   }
 
-  @Put('/:id')
   @ApiOperation({ summary: 'Editar Solicitud' })
   @ApiParam({
-    name: 'ID',
+    name: 'id',
     description: 'ID de la Solicitud a Editar',
   })
   @ApiBody({
     description: 'Datos Actualizados de la Solicitud',
     type: UpdateSolicitudDto,
   })
+  @Put('/:id')
   updateSolicitudDto(
     @Param('id') id: number,
     @Body() updateSolicitudDto: UpdateSolicitudDto,
@@ -260,15 +259,15 @@ export class SolicitudController {
     return this.solicitudService.updateSolicitud(id, updateSolicitudDto);
   }
 
-  @Delete('/:id')
   @ApiOperation({ summary: 'Eliminar Solicitud' })
-  @ApiParam({ name: 'ID', description: 'ID de la Solicitud a Eliminar' })
+  @ApiParam({ name: 'id', description: 'ID de la Solicitud a Eliminar' })
   @ApiResponse({
     status: 200,
     description: 'Borrado Exitoso de la solicitud',
     isArray: false,
     type: Boolean,
   })
+  @Delete('/:id')
   deleteSolicitud(@Param('id') id: number): Promise<boolean> {
     return this.solicitudService.deleteSolicitud(id);
   }

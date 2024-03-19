@@ -125,7 +125,7 @@ export class AdminController {
   }
 
   @ApiOperation({summary: 'Obtener el Administrador por ID'})
-  @ApiParam({name: 'ID', description: 'ID del Administrador a buscar'})
+  @ApiParam({name: 'id', description: 'ID del Administrador a buscar'})
   @ApiResponse({
     status: 200,
     description: 'Se ha obtenido al Administrador y su información en base a su ID',
@@ -139,7 +139,7 @@ export class AdminController {
 
   @ApiOperation({summary: 'Envio de Mail de Solicitud Rechazada al trabajador que la creó'})
   @ApiParam({
-    name: 'Destinatario', 
+    name: 'destinatario', 
     description:'Dirección de correo del trabajador que creó la solicitud'
   })
   @ApiResponse({
@@ -170,7 +170,7 @@ export class AdminController {
 
   @ApiOperation({summary: 'Enviar Mail de Solicitud Aprobada al trabajador que creó la solicitud'})
   @ApiParam({
-  name: 'Destinatario', 
+  name: 'destinatario', 
   description:'Diirección de correo del trabajador que creó la solicitud'
 })
 @ApiResponse({
@@ -206,7 +206,7 @@ export class AdminController {
     type:UpdateAdministradorDto,
 
   })
-  @ApiParam({name: 'ID', description: 'ID del Administrador a ser actualizado'})
+  @ApiParam({name: 'id', description: 'ID del Administrador a ser actualizado'})
   @ApiResponse({
     status:200,
     description: 'El Administrador ha sido actualizado de forma correcta',
@@ -222,7 +222,7 @@ export class AdminController {
   }
 
   @ApiOperation({summary: 'Borrado de Administrador en base a su ID'})
-  @ApiParam({name: 'ID', description:'ID del Administrador a ser borrado'})
+  @ApiParam({name: 'id', description:'ID del Administrador a ser borrado'})
   @ApiResponse({
     status:200,
     description: 'El Administrador ha sido borrado de forma éxitosa',

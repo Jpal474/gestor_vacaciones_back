@@ -39,7 +39,7 @@ export class UsuarioController {
     type: String,
     isArray: true,
   })
-  @ApiParam({ name: 'Opcion', description: 'Opcion para obteener correos' })
+  @ApiParam({ name: 'opcion', description: 'Opcion para obteener correos' })
   @Get('correos/:opcion')
   getMailByRol(@Param('opcion') opcion: number): Promise<string[]> {
     return this.usuarioService.findCorreosByRolId(opcion);
@@ -72,7 +72,7 @@ export class UsuarioController {
     description: 'Datos del usuario a ser actualizado',
     type: UpdateUsuarioDto,
   })
-  @ApiParam({ name: 'ID', description: 'ID del usuario a actualizar' })
+  @ApiParam({ name: 'id', description: 'ID del usuario a actualizar' })
   @Put('/:id')
   updateUsuario(
     @Body() updateUsuarioDto: UpdateUsuarioDto,
@@ -90,7 +90,7 @@ export class UsuarioController {
     type: Boolean,
     isArray: false,
   })
-  @ApiParam({ name: 'ID', description: 'ID del usuario a ser eliminado' })
+  @ApiParam({ name: 'id', description: 'ID del usuario a ser eliminado' })
   @Delete('/:id')
   deleteUsuario(@Param('id') id: string): Promise<boolean> {
     return this.usuarioService.deleteUsuario(id);

@@ -32,5 +32,7 @@ export class CreateSolicitudDto {
   justificacion: string;
 
   @IsNotEmpty()
+  @ApiProperty()
+  @ApiProperty()
   empleado:Empleado;
 }

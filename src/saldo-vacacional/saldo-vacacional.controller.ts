@@ -28,20 +28,20 @@ import { AuthGuard } from '@nestjs/passport';
 export class SaldoVacacionalController {
   constructor(private saldoService: SaldoVacacionalService) {}
 
-  @Get(':id/:anio')
   @ApiOperation({ summary: 'Obtener Saldo Vacacionales del Empleado' })
-  @ApiParam({ name: 'ID', description: 'ID del Empleado a obtener' })
+  @ApiParam({ name: 'iD', description: 'ID del Empleado a obtener' })
   @ApiParam({
-    name: 'Anio',
+    name: 'anio',
     description: 'Año del Saldo Vacacional a actualizar para el empleado',
   })
   @ApiResponse({
     status: 200,
     description:
-      'Regresa el saldo vacacional correspondiente al ID de un empleado y el año',
+    'Regresa el saldo vacacional correspondiente al ID de un empleado y el año',
     isArray: false,
     type: SaldoVacacional,
   })
+  @Get(':id/:anio')
   getSaldoByUser(
     @Param('id') id: string,
     @Param('anio') anio: number,
@@ -68,7 +68,6 @@ export class SaldoVacacionalController {
     return this.saldoService.createSaldoVacacional(createSaldoVacacionalDto);
   }
 
-  @Put('/:id/:anio')
   @ApiOperation({
     summary: 'Actualiza los Datos del Saldo Vacacional',
   })
@@ -83,13 +82,14 @@ export class SaldoVacacionalController {
     type: SaldoVacacional,
   })
   @ApiParam({
-    name: 'ID',
+    name: 'id',
     description: 'ID del Empleado',
   })
   @ApiParam({
-    name: 'AÑO',
+    name: 'anio',
     description: 'Año del saldo a buscar',
   })
+  @Put('/:id/:anio')
   updateSaldoDto(
     @Param('id') id: string,
     @Param('anio') anio: number,

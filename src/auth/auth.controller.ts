@@ -47,7 +47,7 @@ export class AuthController {
     type: TokenDto,
   })
   @ApiParam({
-    name: 'ID',
+    name: 'id',
     description: 'ID del usuario al cual cambiar la contraseña',
   })
   @Post('password/:id')
@@ -60,7 +60,7 @@ export class AuthController {
 
   @ApiOperation({ summary: 'Enviar correo para cambiar contraseña' })
   @ApiParam({
-    name: 'Destinatario',
+    name: 'destinatario',
     description: 'Correo del usuario que ha pedido el cambio de vacaciones ',
   })
   @ApiResponse({

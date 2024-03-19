@@ -26,6 +26,7 @@ export class UpdateAdministradorDto {
   fecha_contratacion: string;
 
   @IsNotEmpty()
+  @ApiProperty()
   departamento: Departamento;
 
 }

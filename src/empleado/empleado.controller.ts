@@ -2,6 +2,7 @@ import { Controller, Get, Param, Put, UseGuards } from '@nestjs/common';
 import { EmpleadoService } from './empleado.service';
 import {
   ApiBearerAuth,
+  ApiBody,
   ApiOperation,
   ApiParam,
   ApiResponse,
@@ -31,15 +32,15 @@ export class EmpleadoController {
     return this.empleadoService.porcentajeEmpleados();
   }
 
-  @Get('/:id')
   @ApiOperation({ summary: 'Obtener el Empleado por su ID' })
-  @ApiParam({ name: 'ID', description: 'ID del empleado a buscar' })
+  @ApiParam({ name: 'id', description: 'ID del empleado a buscar' })
   @ApiResponse({
     status: 200,
     description: 'Regresa un objeto con los datos del empleado',
     isArray: false,
     type: Empleado,
   })
+  @Get('/:id')
   getEmpleadoById(@Param('id') id: string): Promise<Empleado> {
     return this.empleadoService.getEmpleadoById(id);
   }
@@ -52,15 +53,15 @@ export class EmpleadoController {
     isArray: false,
     type: Empleado,
   })
-  @ApiParam({ name: 'ID', description: 'ID del usuario' })
+  @ApiParam({ name: 'id', description: 'ID del usuario' })
   getEmpleadoByUsuarioId(@Param('id') id: string): Promise<Empleado> {
     return this.empleadoService.getEmpleadoByUserId(id);
   }
 
   @Get('/:size/:number')
   @ApiOperation({ description: 'Obtener todos los empleados con paginación' })
-  @ApiParam({ name: 'Size', description: 'Número de registros por página' })
-  @ApiParam({ name: 'Number', description: 'Número de página' })
+  @ApiParam({ name: 'size', description: 'Número de registros por página' })
+  @ApiParam({ name: 'number', description: 'Número de página' })
   @ApiResponse({
     status: 200,
     description: 'Se han obtenido de forma éxitosa a los empleados',
@@ -80,9 +81,9 @@ export class EmpleadoController {
     summary:
       'Actualiza el estado del empleado a DE VACACIONES al aceptar la solicitud de sus vacaciones',
   })
-  @ApiParam({ name: 'ID', description: 'ID del Empleado a actualizar' })
+  @ApiParam({ name: 'id', description: 'ID del Empleado a actualizar' })
   @ApiParam({
-    name: 'Opcion',
+    name: 'opcion',
     description: 'Opción a elegir para cambiar el estado del empleado.',
   })
   @ApiResponse({

@@ -40,7 +40,7 @@ export class SuperadController {
 
   @Post()
   @ApiOperation({ summary: 'Crear SuperAdmin' })
-  @ApiBody({ description: 'Datos del SuperAdministradir para ser registrado' })
+  @ApiBody({ description: 'Datos del SuperAdministradir para ser registrado', type: CreateSuperDto})
   @ApiResponse({
     status: 200,
     description:
@@ -55,7 +55,7 @@ export class SuperadController {
 
   @Post('email')
   @ApiOperation({ summary: 'Enviar mail sobre observaciones de la solicitud' })
-  @ApiBody({ description: 'Destinatario y mensaje a enviar' })
+  @ApiBody({ description: 'Destinatario y mensaje a enviar', type: EnviarMailDto })
   async enviarMail(@Body() mail: EnviarMailDto) {
     try {
       const htmlContent = `
@@ -79,7 +79,7 @@ export class SuperadController {
 
   @Post('enviar_email')
   @ApiOperation({ summary: 'Enviar mail sobre actualización o adición a su saldo vacacional' })
-  @ApiBody({ description: 'Asunto, destinatario y mensaje a enviar' })
+  @ApiBody({ description: 'Asunto, destinatario y mensaje a enviar', type:MailDto })
   async enviarMailSaldo(@Body() mail: MailDto) {
     try {
       const htmlContent = `
